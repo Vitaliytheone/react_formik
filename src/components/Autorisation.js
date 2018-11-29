@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-import { Button, Form } from 'reactstrap';
+import { Button, Form, FormFeedback } from 'reactstrap';
 import Input from './Input';
 import '../helpers/validations';
 
@@ -22,7 +22,7 @@ class Autorisation extends Component {
       this.props.login();
     } else {
       actions.setSubmitting(false);
-      actions.setErrors( { formError: 'Wrong login or password' } );
+      actions.setErrors( { formError: 'Wrong login or password'} );
     }
   }
 
@@ -40,7 +40,7 @@ class Autorisation extends Component {
           ({ handleSubmit, errors }) => {
             return (
               <Form onSubmit={handleSubmit}>
-                {errors.formError}
+                    <div className="text-danger">{errors.formError}</div>
                   <Field name="login" component={Input} label="Login" placeholder="enter your login name" />
                   <Field name="password" component={Input} label="Password" placeholder="enter your password" />
                 <Button type="submit">Submit</Button>
